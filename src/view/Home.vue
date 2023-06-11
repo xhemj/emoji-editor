@@ -24,7 +24,7 @@ const activeTab = ref(0);
 const emojiCategory = [
   {
     title: "人物",
-    value: ["dzx"],
+    value: ["dzx", "pg"],
   },
   {
     title: "搞笑",

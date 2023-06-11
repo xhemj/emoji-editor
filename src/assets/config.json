@@ -3,20 +3,20 @@
     "name": "你小子",
     "baseImg": "https://staticoss.xhemj.work/emoji-editor.xhemj.com/assets/dzx.jpg",
     "previewImg": "https://staticoss.xhemj.work/emoji-editor.xhemj.com/assets/dzx_preview.jpg",
-    "width": 620,
-    "height": 653,
+    "width": 361,
+    "height": 342,
     "fields": [
       {
         "type": "text",
         "name": "文本1",
         "default": "你小子",
         "position": {
-          "x": 174,
-          "y": 309
+          "x": 278,
+          "y": 454
         },
         "style": {
           "fill": "#fff",
-          "fontSize": 60
+          "fontSize": 100
         }
       }
     ]
@@ -33,12 +33,12 @@
         "name": "中文",
         "default": "是的",
         "position": {
-          "x": 128,
-          "y": 284
+          "x": 59,
+          "y": 134
         },
         "style": {
           "fill": "#000",
-          "fontSize": 60
+          "fontSize": 30
         }
       },
       {
@@ -46,12 +46,63 @@
         "name": "英文",
         "default": "YES",
         "position": {
-          "x": 146,
-          "y": 350
+          "x": 67,
+          "y": 165
         },
         "style": {
           "fill": "#000",
-          "fontSize": 48
+          "fontSize": 25
+        }
+      }
+    ]
+  },
+  "pg": {
+    "name": "潘哥",
+    "baseImg": "https://staticoss.xhemj.work/emoji-editor.xhemj.com/assets/pg.jpg",
+    "previewImg": "https://staticoss.xhemj.work/emoji-editor.xhemj.com/assets/pg_preview.jpg",
+    "width": 632,
+    "height": 640,
+    "fields": [
+      {
+        "type": "text",
+        "name": "文本1",
+        "default": "数学老师",
+        "position": {
+          "x": 360,
+          "y": 320
+        },
+        "style": {
+          "fill": "#fff",
+          "fontSize": 28,
+          "angle": 13
+        }
+      },
+      {
+        "type": "text",
+        "name": "文本2",
+        "default": "的",
+        "position": {
+          "x": 387,
+          "y": 361
+        },
+        "style": {
+          "fill": "#fff",
+          "fontSize": 28,
+          "angle": 13
+        }
+      },
+      {
+        "type": "text",
+        "name": "文本3",
+        "default": "自我修养",
+        "position": {
+          "x": 333,
+          "y": 384
+        },
+        "style": {
+          "fill": "#fff",
+          "fontSize": 28,
+          "angle": 13
         }
       }
     ]

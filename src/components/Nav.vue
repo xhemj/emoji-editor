@@ -32,11 +32,12 @@ const isHome = computed(() => router.currentRoute.value.name === "home");
 
 const onClickBack = () => {
   router.push({
+    name: "home",
     query: {
       id: null,
     },
   });
-  router.back();
+  location.hash = "";
 };
 </script>
 

@@ -23,7 +23,6 @@
           <van-field
             v-for="field of strategy.fields"
             v-model="field.instance.value"
-            required
             :label="field.name"
             :key="field.type + field.name + field.default"
             :placeholder="'请输入' + field.name"
@@ -37,7 +36,7 @@
     </div>
     <van-popup
       v-if="isLoadConfig"
-      v-model:show="showImagePreview"
+      v-model:show="isShowImagePreview"
       round
       position="bottom"
       teleport="body"
@@ -48,7 +47,7 @@
         <h2 class="font-bold text-xl mb-2">图片预览</h2>
         <img :src="imageDataUrl" class="mx-auto shadow-md" alt="" />
         <p class="text-gray-400 text-sm mt-2">
-          图片尺寸：{{ imageWidth }} x {{ imageHeight }}，文件大小：{{
+          图片尺寸：{{ strategy.width }} x {{ strategy.height }}，文件大小：{{
             getReadableFileSizeString(imageFileSize)
           }}
         </p>
@@ -83,10 +82,11 @@ const aspectRatio = ref("16 / 9");
 const imageDataUrl = ref("");
 const imageFileSize = ref(0);
 const strategy = ref(null);
+const scale = ref(1);
 
-const isLoadConfig = ref(false);
 const isDev = import.meta.env.DEV || route.query.dev === "1";
-const showImagePreview = ref(false);
+const isLoadConfig = ref(false);
+const isShowImagePreview = ref(false);
 
 let canvas = null;
 
@@ -124,12 +124,13 @@ function resizeCanvas() {
     canvasDom.value.height = height;
     canvasWidth.value = width;
     canvasHeight.value = height;
+
     initCanvas();
   });
 }
 
 function initCanvas() {
-  canvas = new fabric.Canvas("editor-canvas");
+  canvas = new fabric.Canvas(canvasDom.value);
   canvas.setWidth(canvasWidth.value);
   canvas.setHeight(canvasHeight.value);
   // 背景图片
@@ -145,6 +146,7 @@ function initCanvas() {
     // 设置背景图
     const scaleX = canvasWidth.value / img.width;
     const scaleY = canvasHeight.value / img.height;
+    scale.value = Math.max(scaleX, scaleY);
     canvas.setBackgroundImage(fabricImage, canvas.renderAll.bind(canvas), {
       scaleX,
       scaleY,
@@ -168,12 +170,13 @@ function handleConfig() {
         }
       },
       init() {
-        field.instance.value = field.default;
+        field.instance.value = field.instance.value || field.default;
         field.instance.fabricText = new fabric.Text(field.instance.value, {
-          left: field.position.x,
-          top: field.position.y,
+          left: field.position.x * scale.value,
+          top: field.position.y * scale.value,
           ...field.style,
           fontFamily: field.style.fontFamily || "Microsoft YaHei",
+          fontSize: field.style.fontSize * scale.value,
         });
         if (canvas) {
           canvas.add(field.instance.fabricText);
@@ -181,8 +184,10 @@ function handleConfig() {
         if (isDev) {
           field.instance.fabricText.on("selected", () => {
             console.log({
-              x: field.instance.fabricText.left,
-              y: field.instance.fabricText.top,
+              instance: field.instance.fabricText,
+              x: field.instance.fabricText.left / scale.value,
+              y: field.instance.fabricText.top / scale.value,
+              angle: field.instance.fabricText.angle,
             });
           });
         }
@@ -205,16 +210,16 @@ function previewImage() {
   img.onload = () => {
     const c = document.createElement("canvas");
     const ctx = c.getContext("2d");
-    c.width = imageWidth.value;
-    c.height = imageHeight.value;
-    ctx.drawImage(img, 0, 0, imageWidth.value, imageHeight.value);
+    c.width = strategy.value.width;
+    c.height = strategy.value.height;
+    ctx.drawImage(img, 0, 0, strategy.value.width, strategy.value.height);
     const dataURL = c.toDataURL({
       format: "png",
       quality: 1,
     });
     imageDataUrl.value = dataURL;
     imageFileSize.value = (dataURL.length * 3) / 4;
-    showImagePreview.value = true;
+    isShowImagePreview.value = true;
   };
 }
 
