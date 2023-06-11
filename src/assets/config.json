@@ -1,0 +1,59 @@
+{
+  "dzx": {
+    "name": "你小子",
+    "baseImg": "https://staticoss.xhemj.work/emoji-editor.xhemj.com/assets/dzx.jpg",
+    "previewImg": "https://staticoss.xhemj.work/emoji-editor.xhemj.com/assets/dzx_preview.jpg",
+    "width": 620,
+    "height": 653,
+    "fields": [
+      {
+        "type": "text",
+        "name": "文本1",
+        "default": "你小子",
+        "position": {
+          "x": 174,
+          "y": 309
+        },
+        "style": {
+          "fill": "#fff",
+          "fontSize": 60
+        }
+      }
+    ]
+  },
+  "shide": {
+    "name": "是的",
+    "baseImg": "https://staticoss.xhemj.work/emoji-editor.xhemj.com/assets/shide.jpg",
+    "previewImg": "https://staticoss.xhemj.work/emoji-editor.xhemj.com/assets/shide_preview.jpg",
+    "width": 182,
+    "height": 198,
+    "fields": [
+      {
+        "type": "text",
+        "name": "中文",
+        "default": "是的",
+        "position": {
+          "x": 128,
+          "y": 284
+        },
+        "style": {
+          "fill": "#000",
+          "fontSize": 60
+        }
+      },
+      {
+        "type": "text",
+        "name": "英文",
+        "default": "YES",
+        "position": {
+          "x": 146,
+          "y": 350
+        },
+        "style": {
+          "fill": "#000",
+          "fontSize": 48
+        }
+      }
+    ]
+  }
+}

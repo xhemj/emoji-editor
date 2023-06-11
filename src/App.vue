@@ -9,6 +9,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import Nav from "./components/Nav.vue";
 
 const router = useRouter();
 const transitionName = ref("slide-right");
